@@ -1,0 +1,22 @@
+include title_names
+block variables
+doctype html
+html
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+		title #{title}
+		link(rel="stylesheet", href="css/bootstrap-reboot.min.css")
+		link(rel="stylesheet", href="css/main.css")
+	body
+		include mixins
+		.main-block 
+			.header
+				img.header__logo(src="/img/header-logo.png")
+				.header__menu
+					+createMenu(title)
+			hr
+			+createCurrentPath(title)
+			block content 
+			hr
+			.footer
