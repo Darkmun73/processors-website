@@ -1,0 +1,8 @@
+extends template
+block variables
+block content
+	include mixins
+	.info-container.flex 
+		img.processor-info-image(src=imageSource)
+		h3 Описание
+		block text

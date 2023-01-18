@@ -1,0 +1,22 @@
+extends template
+block variables
+	- var title = MainPage
+block content
+	include mixins
+	span.gallery-text Нажмите на картинку, чтобы подробнее узнать о модели
+	.gallery
+		+createPicturesWithHref({
+			'img/intel_core_i5_6400.png': IntelCorei5PageURL,
+			'img/intel_core_i7_9700K.png': '#'/*IntelCorei7PageURL*/,
+			'img/intel_core_i9_12900K.png': '#'/*IntelCorei9PageURL*/
+			})
+	hr
+	.info-container 
+		h3 Топ 3 процессора Intel
+		.rating-block 
+			each url, name in processorsPages
+				.item 
+					.heading 
+						strong.title #{name}
+						.rating
+						

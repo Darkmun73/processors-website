@@ -1,0 +1,133 @@
+extends template
+block variables
+	- var title = IntelProcessorsPage
+block content
+	include mixins
+	.info-container
+		details
+			summary График
+			form.chart
+				.column-title Значение по оси OX
+				.column-title Результат
+				- var i = 0
+				each value, key in {'Семейство процессоров': 'Максимальная частота','Поколение': 'Минимальная стоимость','Дата выпуска': 'Количество моделей процессоров'}
+					.chart__item
+						input(type="radio", name="ox", id="ox"+i, value=i)
+						label(for="ox"+i) #{key}
+					.chart__item
+						input(type="checkbox", name="oy", id="oy"+i, value=i)
+						label(for="oy"+i) #{value}
+					- i++
+				input(type="button", value="Построить")
+		details
+			summary Фильтр
+			form.filter
+				each value, key in {'processor': 'Модель:', 'family': 'Семейство процессоров:', 'generation': 'Поколоение:', 'cores': 'Количество ядер:', 'threads': 'Количество потоков:'}
+					.filter__item
+						+createTextInput(key, value)
+				.filter__item
+					label(for="priceFrom") Стоимость: от
+					input(type="text", name="priceFrom")
+					| до 
+					input(type="text", name="priceTo")
+		details 
+			summary Сортировка
+			form.sort
+				- var i = 0
+				while i<3
+					.sort__item
+						| Уровень #{i+1}: 
+						select(name="sort"+i) 
+							option(value="0") Нет
+							option(value="1") Модель
+							option(value="2") Семейство процессоров
+							option(value="3") Поколение
+							option(value="4") Количество ядер
+							option(value="5") Количество потоков
+							option(value="6") Тактовая частота
+							option(value="7") Стоимость
+							option(value="8") Дата выпуска
+						| по убыванию?
+						input(type="checkbox", name="desc"+i)
+						- i++
+				input(type="button", value="Сортировать")
+		table
+			tbody
+				tr
+					th(rowspan='2') Модель
+					th(rowspan='2') Семейство процессоров
+					th(rowspan='2') Поколение
+					th(colspan='2') Ядра
+					th(rowspan='2') Тактовая частота, ГГц
+					th(rowspan='2') Стоимость (USD)
+					th(colspan='2') Дата выпуска
+				tr
+					th Количество ядер
+					th Количество потоков
+					th Год
+					th Квартал
+				+createProcessorsTableRow("12900K", "Core i9", 12, 8, 24, 3.2, 589, 2021, 4)
+				+createProcessorsTableRow("12900KF", "Core i9", 12, 8, 24, 3.2, 569, 2021, 4)
+				+createProcessorsTableRow("12900KS", "Core i9", 12, 8, 24, 3.4, 739, 2022, 1)
+				+createProcessorsTableRow("12900", "Core i9", 12, 8, 24, 2.4, 489, 2022, 1)
+				+createProcessorsTableRow("12900F", "Core i9", 12, 8, 24, 2.4, 464, 2022, 1)
+				+createProcessorsTableRow("12900T", "Core i9", 12, 8, 24, 1.4, 489, 2022, 1)
+				+createProcessorsTableRow("12700K", "Core i7", 12, 8, 20, 3.6, 409, 2021, 4)
+				+createProcessorsTableRow("12700KF", "Core i7", 12, 8, 20, 3.6, 384, 2021, 4)
+				+createProcessorsTableRow("12700", "Core i7", 12, 8, 20, 2.1, 339, 2022, 1)
+				+createProcessorsTableRow("12700F", "Core i7", 12, 8, 20, 2.1, 314, 2022, 1)
+				+createProcessorsTableRow("12700T", "Core i7", 12, 8, 20, 1.4, 339, 2022, 1)
+				+createProcessorsTableRow("12600K", "Core i5", 12, 6, 16, 3.7, 289, 2021, 4)
+				+createProcessorsTableRow("12600KF", "Core i5", 12, 6, 16, 3.7, 264, 2021, 4)
+				+createProcessorsTableRow("12600", "Core i5", 12, 6, 12, 3.3, 223, 2022, 1)
+				+createProcessorsTableRow("12600T", "Core i5", 12, 6, 12, 2.1, 223, 2022, 1)
+				+createProcessorsTableRow("12500", "Core i5", 12, 6, 12, 3.0, 202, 2022, 1)
+				+createProcessorsTableRow("12500T", "Core i5", 12, 6, 12, 2.0, 202, 2022, 1)
+				+createProcessorsTableRow("12400", "Core i5", 12, 6, 12, 2.5, 192, 2022, 1)
+				+createProcessorsTableRow("12400F", "Core i5", 12, 6, 12, 2.5, 167, 2022, 1)
+				+createProcessorsTableRow("12400T", "Core i5", 12, 6, 12, 1.8, 192, 2022, 1)
+				+createProcessorsTableRow("12300", "Core i3", 12, 4, 8, 3.5, 143, 2022, 1)
+				+createProcessorsTableRow("12300T", "Core i3", 12, 4, 8, 2.3, 143, 2022, 1)
+				+createProcessorsTableRow("12100", "Core i3", 12, 4, 8, 3.3, 122, 2022, 1)
+				+createProcessorsTableRow("12100F", "Core i3", 12, 4, 8, 3.3, 97, 2022, 1)
+				+createProcessorsTableRow("12100T", "Core i3", 12, 4, 8, 2.2, 122, 2022, 1)
+				+createProcessorsTableRow("G7400", "Pentium", 12, 2, 4, 3.7, 64, 2022, 1)
+				+createProcessorsTableRow("G7400T", "Pentium", 12, 2, 4, 3.1, 64, 2022, 1)
+				+createProcessorsTableRow("G6900", "Celeron", 12, 2, 2, 3.4, 42, 2022, 1)
+				+createProcessorsTableRow("G6900T", "Celeron", 12, 2, 2, 2.8, 42, 2022, 1)
+				+createProcessorsTableRow("11900T", "Core i9", 11, 8, 16, 1.5, 439, 2021, 1)
+				+createProcessorsTableRow("11900KF", "Core i9", 11, 8, 16, 3.5, 513, 2021, 1)
+				+createProcessorsTableRow("11900K", "Core i9", 11, 8, 16, 3.5, 539, 2021, 1)
+				+createProcessorsTableRow("11900F", "Core i9", 11, 8, 16, 2.5, 422, 2021, 1)
+				+createProcessorsTableRow("11900", "Core i9", 11, 8, 16, 2.5, 439, 2021, 1)
+				+createProcessorsTableRow("11700T", "Core i7", 11, 8, 16, 1.4, 323, 2021, 1)
+				+createProcessorsTableRow("11700KF", "Core i7", 11, 8, 16, 3.6, 374, 2021, 1)
+				+createProcessorsTableRow("11700K", "Core i7", 11, 8, 16, 3.6, 399, 2021, 1)
+				+createProcessorsTableRow("11700F", "Core i7", 11, 8, 16, 2.5, 298, 2021, 1)
+				+createProcessorsTableRow("11700", "Core i7", 11, 8, 16, 2.5, 323, 2021, 1)
+				+createProcessorsTableRow("11600T", "Core i5", 11, 6, 12, 1.7, 213, 2021, 1)
+				+createProcessorsTableRow("11600KF", "Core i5", 11, 6, 12, 3.9, 237, 2021, 1)
+				+createProcessorsTableRow("11600K", "Core i5", 11, 6, 12, 3.9, 262, 2021, 1)
+				+createProcessorsTableRow("11600", "Core i5", 11, 6, 12, 2.8, 213, 2021, 1)
+				+createProcessorsTableRow("11500T", "Core i5", 11, 6, 12, 1.5, 192, 2021, 1)
+				+createProcessorsTableRow("11500", "Core i5", 11, 6, 12, 2.7, 192, 2021, 1)
+				+createProcessorsTableRow("11400T", "Core i5", 11, 6, 12, 1.3, 182, 2021, 1)
+				+createProcessorsTableRow("11400F", "Core i5", 11, 6, 12, 2.6, 157, 2021, 1)
+				+createProcessorsTableRow("11400", "Core i5", 11, 6, 12, 2.6, 182, 2021, 1)
+				+createProcessorsTableRow("10910", "Core i9", 10, 10, 20, 3.6, "-", 2020, 3)
+				+createProcessorsTableRow("10900K", "Core i9", 10, 10, 20, 3.7, 488, 2020, 2)
+				+createProcessorsTableRow("10900KF", "Core i9", 10, 10, 20, 3.7, 463, 2020, 2)
+				+createProcessorsTableRow("10900", "Core i9", 10, 10, 20, 2.8, 439, 2020, 2)
+				+createProcessorsTableRow("10900E", "Core i9", 10, 10, 20, 2.8, 440, 2020, 2)
+				+createProcessorsTableRow("10900F", "Core i9", 10, 10, 20, 2.8, 422, 2020, 2)
+				+createProcessorsTableRow("10900T", "Core i9", 10, 10, 20, 1.9, 439, 2020, 2)
+				+createProcessorsTableRow("10850K", "Core i9", 10, 10, 20, 3.6, 453, 2020, 2)
+				+createProcessorsTableRow("10700K", "Core i7", 10, 8, 16, 3.8, 374, 2020, 2)
+				+createProcessorsTableRow("10700KF", "Core i7", 10, 8, 16, 3.8, 349, 2020, 2)
+				+createProcessorsTableRow("10700", "Core i7", 10, 8, 16, 2.9, 323, 2020, 2)
+				+createProcessorsTableRow("10700E", "Core i7", 10, 8, 16, 2.9, 330, 2020, 2)
+				+createProcessorsTableRow("10700F", "Core i7", 10, 8, 16, 2.9, 298, 2020, 2)
+				+createProcessorsTableRow("10700T", "Core i7", 10, 8, 16, 2.0, 323, 2020, 2)
+				+createProcessorsTableRow("10700TE", "Core i7", 10, 8, 16, 2.0, 330, 2020, 2)
+				+createProcessorsTableRow("10600K", "Core i5", 10, 6, 12, 4.1, 262, 2020, 2)
+				+createProcessorsTableRow("10600KF", "Core i5", 10, 6, 12, 4.1, 237, 2020, 2)
