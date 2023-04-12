@@ -17,7 +17,7 @@
       <div class="info-container">
         <details>
           <summary>График</summary>
-          <form class="chart">
+          <form id="chart">
             <div class="column-title">Значение по оси OX</div>
             <div class="column-title">Результат</div>
             <div class="chart__item">
@@ -49,37 +49,51 @@
         </details>
         <details>
           <summary>Фильтр</summary>
-          <form class="filter">
+          <form id="filter">
             <div class="filter__item">
-                    <label for="processor">Модель:</label>
-                    <input type="text" name="processor">
+                    <label for="0">Модель:</label>
+                    <input type="text" name="0">
             </div>
             <div class="filter__item">
-                    <label for="family">Семейство процессоров:</label>
-                    <input type="text" name="family">
+                    <label for="1">Семейство процессоров:</label>
+                    <input type="text" name="1">
             </div>
             <div class="filter__item">
-                    <label for="generation">Поколоение:</label>
-                    <input type="text" name="generation">
+                    <label for="2">Поколоение:</label>
+                    <input type="text" name="2">
             </div>
             <div class="filter__item">
-                    <label for="cores">Количество ядер:</label>
-                    <input type="text" name="cores">
+                    <label for="3">Количество ядер:</label>
+                    <input type="text" name="3">
             </div>
             <div class="filter__item">
-                    <label for="threads">Количество потоков:</label>
-                    <input type="text" name="threads">
+                    <label for="4">Количество потоков:</label>
+                    <input type="text" name="4">
+            </div>
+            <div class="filter__item">
+                    <label for="5">Тактовая частота:</label>
+                    <input type="text" name="5">
             </div>
             <div class="filter__item">
               <label for="priceFrom">Стоимость: от</label>
-              <input type="text" name="priceFrom">до 
+              <input type="text" name="priceFrom">до
               <input type="text" name="priceTo">
+            </div>
+            <div class="filter__item">
+              <label for="yearFrom">Дата выпуска: от</label>
+              <input type="number" name="yearFrom" min="2018" max="2024">года
+              <input type="number" name="quarterFrom" min="1" max="4">квартала
+            </div>
+            <div class="filter__item">
+              <label for="yearTo">до</label>
+              <input type="number" name="yearTo" min="2018" max="2024">года
+              <input type="number" name="quarterTo" min="1" max="4">квартала
             </div>
           </form>
         </details>
         <details> 
           <summary>Сортировка</summary>
-          <form class="sort">
+          <form id="sort">
             <div class="sort__item">Уровень 1: 
               <select name="sort0"> 
                 <option value="0">Нет</option>
@@ -122,11 +136,11 @@
               </select>по убыванию?
               <input type="checkbox" name="desc2">
             </div>
-            <input type="button" value="Сортировать">
+            <input type="button" id="sortButton" value="Сортировать">
           </form>
         </details>
-        <table>
-          <tbody>
+        <div class="scroll">
+          <table id="processors">
             <tr>
               <th rowspan="2">Модель</th>
               <th rowspan="2">Семейство процессоров</th>
@@ -857,11 +871,14 @@
                     <td>2020</td>
                     <td>2</td>
                   </tr>
-          </tbody>
-        </table>
+          </table>
+        </div>
       </div>
       <hr>
       <div class="footer"></div>
     </div>
+    <script src="js/processors_table.js"></script>
+    <script src="js/filter.js"></script>
+    <script src="js/sort.js"></script>
   </body>
 </html>

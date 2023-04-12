@@ -6,7 +6,7 @@ block content
 	.info-container
 		details
 			summary График
-			form.chart
+			form#chart
 				.column-title Значение по оси OX
 				.column-title Результат
 				- var i = 0
@@ -21,18 +21,30 @@ block content
 				input(type="button", value="Построить")
 		details
 			summary Фильтр
-			form.filter
-				each value, key in {'processor': 'Модель:', 'family': 'Семейство процессоров:', 'generation': 'Поколоение:', 'cores': 'Количество ядер:', 'threads': 'Количество потоков:'}
+			form#filter
+				each value, key in {'0': 'Модель:', '1': 'Семейство процессоров:', '2': 'Поколоение:', '3': 'Количество ядер:', '4': 'Количество потоков:', '5': 'Тактовая частота:'}
 					.filter__item
 						+createTextInput(key, value)
 				.filter__item
 					label(for="priceFrom") Стоимость: от
 					input(type="text", name="priceFrom")
-					| до 
+					| до
 					input(type="text", name="priceTo")
+				.filter__item
+					label(for="yearFrom") Дата выпуска: от
+					input(type="number", name="yearFrom", min=2018, max=2024) 
+					| года
+					input(type="number", name="quarterFrom", min=1, max=4)
+					| квартала
+				.filter__item
+					label(for="yearTo") до
+					input(type="number", name="yearTo", min=2018, max=2024)
+					| года
+					input(type="number", name="quarterTo", min=1, max=4)
+					| квартала
 		details 
 			summary Сортировка
-			form.sort
+			form#sort
 				- var i = 0
 				while i<3
 					.sort__item
@@ -50,9 +62,9 @@ block content
 						| по убыванию?
 						input(type="checkbox", name="desc"+i)
 						- i++
-				input(type="button", value="Сортировать")
-		table
-			tbody
+				input(type="button", id="sortButton" value="Сортировать")
+		.scroll
+			table#processors
 				tr
 					th(rowspan='2') Модель
 					th(rowspan='2') Семейство процессоров
@@ -131,3 +143,8 @@ block content
 				+createProcessorsTableRow("10700TE", "Core i7", 10, 8, 16, 2.0, 330, 2020, 2)
 				+createProcessorsTableRow("10600K", "Core i5", 10, 6, 12, 4.1, 262, 2020, 2)
 				+createProcessorsTableRow("10600KF", "Core i5", 10, 6, 12, 4.1, 237, 2020, 2)
+
+block scripts 
+	script(src='js/processors_table.js')
+	script(src='js/filter.js')
+	script(src='js/sort.js')

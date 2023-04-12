@@ -213,59 +213,63 @@ body .main-block .info-container details form {
   padding: 10px;
   background-color: #7bbdf3;
 }
-body .main-block .info-container details form.chart {
+body .main-block .info-container details form#chart {
   display: grid;
   grid-template-columns: repeat(2, auto);
   grid-template-rows: repeat(5, 1fr);
   grid-row-gap: 10px;
   align-items: center;
 }
-body .main-block .info-container details form.chart .chart__item {
+body .main-block .info-container details form#chart .chart__item {
   display: flex;
   flex-direction: row;
 }
-body .main-block .info-container details form.chart .chart__item label {
+body .main-block .info-container details form#chart .chart__item label {
   margin: 0 10px;
 }
-body .main-block .info-container details form.chart .column-title {
+body .main-block .info-container details form#chart .column-title {
   text-align: center;
   font-weight: bold;
 }
-body .main-block .info-container details form.chart input[type="button"] {
+body .main-block .info-container details form#chart input[type="button"] {
+  width: 50%;
   grid-area: 5/1/6/3;
 }
-body .main-block .info-container details form.filter {
+body .main-block .info-container details form#filter {
   display: flex;
   flex-direction: column;
 }
-body .main-block .info-container details form.filter .filter__item {
+body .main-block .info-container details form#filter .filter__item {
   display: flex;
   flex-wrap: wrap;
   margin: 5px;
 }
-body .main-block .info-container details form.filter .filter__item input {
+body .main-block .info-container details form#filter .filter__item input {
   margin: 0 10px;
 }
-body .main-block .info-container details form.sort {
+body .main-block .info-container details form#sort {
   display: flex;
   flex-direction: column;
 }
-body .main-block .info-container details form.sort .sort__item {
+body .main-block .info-container details form#sort .sort__item {
   display: flex;
   flex-wrap: wrap;
   margin: 5px;
 }
-body .main-block .info-container details form.sort .sort__item input,
-body .main-block .info-container details form.sort .sort__item select {
+body .main-block .info-container details form#sort .sort__item input,
+body .main-block .info-container details form#sort .sort__item select {
   margin: 0 10px;
 }
 body .main-block .info-container details[open] summary {
   border-radius: 6px 6px 0 0;
 }
-body .main-block .info-container table {
-  overflow: hidden;
+body .main-block .info-container .scroll {
+  overflow: auto;
+}
+body .main-block .info-container .scroll table {
+  overflow: auto;
   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-  font-size: 14px;
+  font-size: 12px;
   background: #fff;
   width: 100%;
   height: 100%;
@@ -273,27 +277,22 @@ body .main-block .info-container table {
   text-align: left;
   margin: 0 auto 20px;
 }
-body .main-block .info-container table tbody tr {
+body .main-block .info-container .scroll table tbody tr {
   width: 100%;
   height: 100%;
 }
-body .main-block .info-container table tbody tr th {
+body .main-block .info-container .scroll table tbody tr th {
   font-weight: normal;
   color: #039;
   height: 100%;
   padding: 10px 15px;
   border-bottom: 3px solid #e8edff;
 }
-body .main-block .info-container table tbody tr td {
+body .main-block .info-container .scroll table tbody tr td {
   color: #669;
   height: 100%;
   border-top: 1px solid #e8edff;
   padding: 10px 15px;
-}
-@media (max-width: 1600px) {
-  body .main-block table {
-    font-size: 10px;
-  }
 }
 body .main-block .info-container.flex {
   display: flex;
