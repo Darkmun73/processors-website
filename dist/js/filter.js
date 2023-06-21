@@ -26,17 +26,7 @@ for (let i = 0; i < formFilter.elements.length; i++) {
                         break;
                     case 'yearFrom':
                         if (formFilter[k+1].value === '') {
-                            console.log(formFilter[k+1].value);
-                            console.log(row.cells[7].textContent);
-                            console.log(input.value);
                             if (isNum && +row.cells[7].textContent < +input.value) {
-                                toHide = true;
-                            }
-                        }
-                        break;
-                    case 'yearTo':
-                        if (formFilter[k+1].value === '') {
-                            if (isNum && +row.cells[7].textContent > +input.value) {
                                 toHide = true;
                             }
                         }
@@ -47,6 +37,13 @@ for (let i = 0; i < formFilter.elements.length; i++) {
                                 || (+row.cells[8].textContent < +input.value
                                     && +row.cells[7].textContent === +formFilter[k-1].value))) {
                             toHide = true;
+                        }
+                        break;
+                    case 'yearTo':
+                        if (formFilter[k+1].value === '') {
+                            if (isNum && +row.cells[7].textContent > +input.value) {
+                                toHide = true;
+                            }
                         }
                         break;
                     case 'quarterTo':

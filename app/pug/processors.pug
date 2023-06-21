@@ -7,18 +7,21 @@ block content
 		details
 			summary График
 			form#chart
-				.column-title Значение по оси OX
-				.column-title Результат
-				- var i = 0
-				each value, key in {'Семейство процессоров': 'Максимальная частота','Поколение': 'Минимальная стоимость','Дата выпуска': 'Количество моделей процессоров'}
-					.chart__item
-						input(type="radio", name="ox", id="ox"+i, value=i)
-						label(for="ox"+i) #{key}
-					.chart__item
-						input(type="checkbox", name="oy", id="oy"+i, value=i)
-						label(for="oy"+i) #{value}
-					- i++
-				input(type="button", value="Построить")
+				#chart-info
+					.column-title Значение по оси OX
+					.column-title Результат
+					- var i = 0
+					each value, key in {'Семейство процессоров': 'Максимальная частота','Поколение': 'Минимальная стоимость','Дата выпуска': 'Количество моделей процессоров'}
+						.chart__item
+							if (i !== 2)
+								input(type="radio", name="ox", id="ox"+i, value=key, checked)
+								label(for="ox"+i) #{key}
+						.chart__item
+							input(type="checkbox", name="oy", id="oy"+i, value=value)
+							label(for="oy"+i) #{value}
+						- i++
+					input(type="button", value="Построить", onclick="drawChart(this.form)")
+				#charts
 		details
 			summary Фильтр
 			form#filter
@@ -148,3 +151,4 @@ block scripts
 	script(src='js/processors_table.js')
 	script(src='js/filter.js')
 	script(src='js/sort.js')
+	script(src='js/chart.js')

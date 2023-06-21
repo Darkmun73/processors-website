@@ -110,6 +110,14 @@ body .main-block .footer {
 body .main-block {
   text-align: left;
 }
+body .main-block .grid-item {
+  width: 33%;
+  height: auto;
+}
+body .main-block .grid-item img {
+  overflow: hidden;
+  width: 100%;
+}
 body .main-block span.gallery-text {
   margin: 0 1%;
   font-weight: bold;
@@ -209,31 +217,53 @@ body .main-block .info-container details summary {
   border-radius: 6px;
 }
 body .main-block .info-container details form {
+  overflow: auto;
   border-radius: 0 6px 6px 6px;
   padding: 10px;
   background-color: #7bbdf3;
 }
-body .main-block .info-container details form#chart {
+body .main-block .info-container details form #chart-info {
   display: grid;
   grid-template-columns: repeat(2, auto);
   grid-template-rows: repeat(5, 1fr);
   grid-row-gap: 10px;
   align-items: center;
 }
-body .main-block .info-container details form#chart .chart__item {
+body .main-block .info-container details form #chart-info .chart__item {
   display: flex;
   flex-direction: row;
 }
-body .main-block .info-container details form#chart .chart__item label {
+body .main-block .info-container details form #chart-info .chart__item label {
   margin: 0 10px;
 }
-body .main-block .info-container details form#chart .column-title {
+body .main-block .info-container details form #chart-info .column-title {
   text-align: center;
   font-weight: bold;
 }
-body .main-block .info-container details form#chart input[type="button"] {
+body .main-block .info-container details form #chart-info input[type="button"] {
   width: 50%;
   grid-area: 5/1/6/3;
+}
+body .main-block .info-container details form #charts {
+  display: flex;
+  flex-direction: column;
+}
+body .main-block .info-container details form #charts svg {
+  background: #69a2d1;
+}
+body .main-block .info-container details form #charts svg path,
+body .main-block .info-container details form #charts svg line {
+  fill: none;
+  stroke: #333;
+  width: 1px;
+}
+body .main-block .info-container details form #charts svg text {
+  font: 8px Verdana;
+}
+body .main-block .info-container details form #charts svg .grid-line {
+  stroke: #000;
+  shape-rendering: crispEdges;
+  stroke-opacity: 0.1;
 }
 body .main-block .info-container details form#filter {
   display: flex;

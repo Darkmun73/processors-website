@@ -11,10 +11,11 @@ body
 					padding 5px
 					border-radius: border_radius
 				form 
+					overflow: auto
 					border-radius: 0 border_radius border_radius border_radius
 					padding 10px
 					background-color: js_block_color
-					&#chart
+					#chart-info
 						display: grid
 						grid-template-columns: repeat(2, auto)
 						grid-template-rows: repeat(5, 1fr)
@@ -31,6 +32,22 @@ body
 						input[type="button"]
 							width: 50%
 							grid-area: 5/1/6/3
+					#charts
+						display: flex
+						flex-direction: column
+						svg
+							background: #69a2d1
+							path, line
+								fill: none;
+								stroke: #333333;
+								width: 1px;
+							
+							text
+								font: 8px Verdana;
+							.grid-line
+								stroke: black
+								shape-rendering: crispEdges
+								stroke-opacity: 0.1
 					&#filter
 						display: flex
 						flex-direction: column
